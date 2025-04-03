@@ -1,36 +1,28 @@
-#include<stdio.h>
+#include <stdio.h>
 
-void printArray(int* A, int n){
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d ", A[i]);
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
-void insertionSort(int *A, int n){
-    int key, j;
-    // Loop for passes
-    for (int i = 1; i <= n-1; i++)
-    {
-        key = A[i];
-        j = i-1;
-        // Loop for each pass
-        while(j>=0 && A[j] > key){
-            A[j+1] = A[j];
-            j--;
-        }
-        A[j+1] = key;
-    }
-}
-
-int main(){
-  
-    
-    int A[] = {12, 54, 65, 7, 23, 9};
-    int n = 6;
-    printArray(A, n);
-    insertionSort(A, n);
-    printArray(A, n);
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    insertionSort(arr, n);
+    printArray(arr, n);
     return 0;
 }

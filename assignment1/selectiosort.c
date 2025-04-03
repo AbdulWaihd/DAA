@@ -1,41 +1,30 @@
 #include <stdio.h>
 
-
-void printArray(int *arr, int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
-}
-
-void selectionsort(int* a,int n){
-int temp;
-for (int i = 0; i < n; i++)
-{
-    int min_idx=i;
-    for (int j = i+1; j < n; j++)
-    {
-        if(a[j]<a[min_idx]){
-            min_idx=j;
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
         }
+        int temp = arr[minIdx];
+        arr[minIdx] = arr[i];
+        arr[i] = temp;
     }
-temp=a[i];
-a[i]=a[min_idx];
-a[min_idx]=temp;
-    
 }
 
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
-int main()
-{
 
-    int arr[] = {7, 11, 8, 17, 4};
-   
-    printf("array before sort:");
-    printArray(arr, 5);
-   selectionsort(arr, 5);
-    printf("array after sort:");
-    printArray(arr, 5);
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    selectionSort(arr, n);
+    printArray(arr, n);
     return 0;
 }
